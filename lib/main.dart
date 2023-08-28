@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
       home: MyHomePage(),
     );
   }
@@ -62,13 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter App'),
+        title: const Text('Personal Expenses'),
         actions: [
           IconButton(
             onPressed: () => _startAddNewTransaction(context),
             icon: const Icon(
               Icons.add,
-              color: Colors.yellow,
+              //color: Colors.yellow,
             ),
           )
         ],
