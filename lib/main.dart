@@ -68,10 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
-        context: ctx,
-        builder: (bTx) {
-          return NewTransaction(_addNewTransaction);
-        });
+      context: ctx,
+      builder: (bTx) {
+        return NewTransaction(_addNewTransaction);
+      },
+    );
   }
 
   @override
