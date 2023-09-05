@@ -13,6 +13,13 @@ class MyApp extends StatelessWidget {
       title: 'Personal Expenses',
       theme: ThemeData(
         fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              titleMedium: const TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
         //primarySwatch: Colors.purple,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.purple,
@@ -73,7 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text(
           'Personal Expenses',
-          style: TextStyle(fontFamily: 'OpenSans'),
         ),
         actions: [
           IconButton(
