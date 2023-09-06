@@ -27,22 +27,28 @@ class Chart extends StatelessWidget {
         //     totalSum += recentTransaction[i].amount;
         //   }
         // }
-        print(DateFormat.E(weekDay));
-        print(totalSum);
-        return {'day': DateFormat.E(weekDay), 'amount': totalSum};
+        print(DateFormat.E().format(weekDay));
+        return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    print(groupedTransactionValues);
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(20),
       color: Theme.of(context).colorScheme.secondary,
       child: Container(
         padding: const EdgeInsets.all(10),
-        child: Row(),
+        child: Expanded(
+          child: Row(
+            children: groupedTransactionValues
+                .map((e) => Text('${e['day']}: ${e['amount']}'))
+                .toList(),
+          ),
+        ),
       ),
     );
   }
