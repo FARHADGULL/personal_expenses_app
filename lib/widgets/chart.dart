@@ -12,13 +12,23 @@ class Chart extends StatelessWidget {
       (index) {
         final weekDay = DateTime.now().subtract(Duration(days: index));
         double totalSum = 0.0;
-        for (var i = 0; i < recentTransaction.length; i++) {
-          if (recentTransaction[i].date.day == weekDay.day &&
-              recentTransaction[i].date.month == weekDay.month &&
-              recentTransaction[i].date.year == weekDay.year) {
-            totalSum += recentTransaction[i].amount;
+        for (var i in recentTransaction) {
+          if (i.date.day == weekDay.day &&
+              i.date.month == weekDay.month &&
+              i.date.year == weekDay.year) {
+            totalSum += i.amount;
           }
         }
+
+        // for (var i = 0; i < recentTransaction.length; i++) {
+        //   if (recentTransaction[i].date.day == weekDay.day &&
+        //       recentTransaction[i].date.month == weekDay.month &&
+        //       recentTransaction[i].date.year == weekDay.year) {
+        //     totalSum += recentTransaction[i].amount;
+        //   }
+        // }
+        print(DateFormat.E(weekDay));
+        print(totalSum);
         return {'day': DateFormat.E(weekDay), 'amount': totalSum};
       },
     );
