@@ -49,12 +49,15 @@ class Chart extends StatelessWidget {
       color: Theme.of(context).colorScheme.secondary,
       child: Row(
           children: groupedTransactionValues.map((e) {
-        return ChartBar(
-            label: e['day'].toString(),
-            spendingAmount: e['amount'] as double,
-            spendingPctOfTotal: totalSpendingInWeek == 0.0
-                ? 0.0
-                : (e['amount'] as double) / totalSpendingInWeek);
+        return Flexible(
+          fit: FlexFit.tight,
+          child: ChartBar(
+              label: e['day'].toString(),
+              spendingAmount: e['amount'] as double,
+              spendingPctOfTotal: totalSpendingInWeek == 0.0
+                  ? 0.0
+                  : (e['amount'] as double) / totalSpendingInWeek),
+        );
       }).toList()),
     );
   }
