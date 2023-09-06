@@ -7,11 +7,11 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       color: Theme.of(context).colorScheme.secondary,
       child: Container(
-        padding: EdgeInsets.all(10),
-        child: Text('Chart'),
+        padding: const EdgeInsets.all(10),
+        child: Row(),
       ),
     );
   }
