@@ -34,46 +34,67 @@ class TransactionList extends StatelessWidget {
               itemCount: UserTransactions.length,
               itemBuilder: (context, index) {
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).primaryColor,
-                            width: 2,
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          '\$${UserTransactions[index].amount.toStringAsFixed(2)}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.purple,
-                          ),
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: FittedBox(
+                          child: Text('\$${UserTransactions[index].amount}'),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(UserTransactions[index].title,
-                              style: Theme.of(context).textTheme.titleMedium),
-                          Text(
-                            DateFormat.yMMMd()
-                                .format(UserTransactions[index].date),
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                    ),
+                    title: Text(
+                      '${UserTransactions[index].title}',
+                    ),
+                    subtitle: Text(
+                        '${DateFormat.yMMMd().format(UserTransactions[index].date)}'),
                   ),
                 );
+
+                //   return Card(
+                //     child: Row(
+                //       children: [
+                //         Container(
+                //           margin: const EdgeInsets.symmetric(
+                //             vertical: 10,
+                //             horizontal: 15,
+                //           ),
+                //           decoration: BoxDecoration(
+                //             border: Border.all(
+                //               color: Theme.of(context).primaryColor,
+                //               width: 2,
+                //             ),
+                //           ),
+                //           padding: const EdgeInsets.all(10),
+                //           child: Text(
+                //             '\$${UserTransactions[index].amount.toStringAsFixed(2)}',
+                //             style: const TextStyle(
+                //               fontWeight: FontWeight.bold,
+                //               fontSize: 20,
+                //               color: Colors.purple,
+                //             ),
+                //           ),
+                //         ),
+                //         Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             Text(UserTransactions[index].title,
+                //                 style: Theme.of(context).textTheme.titleMedium),
+                //             Text(
+                //               DateFormat.yMMMd()
+                //                   .format(UserTransactions[index].date),
+                //               style: const TextStyle(
+                //                 color: Colors.grey,
+                //               ),
+                //             ),
+                //           ],
+                //         )
+                //       ],
+                //     ),
+                //   );
               },
             ),
     );

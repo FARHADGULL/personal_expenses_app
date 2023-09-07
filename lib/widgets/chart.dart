@@ -29,6 +29,7 @@ class Chart extends StatelessWidget {
         //   }
         // }
         print(DateFormat.E().format(weekDay));
+        print(totalSum);
         return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
       },
     );
@@ -47,19 +48,22 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: const EdgeInsets.all(20),
       color: Theme.of(context).colorScheme.secondary,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: groupedTransactionValues.map((e) {
-            return Flexible(
-              fit: FlexFit.tight,
-              child: ChartBar(
-                  label: e['day'].toString(),
-                  spendingAmount: e['amount'] as double,
-                  spendingPctOfTotal: totalSpendingInWeek == 0.0
-                      ? 0.0
-                      : (e['amount'] as double) / totalSpendingInWeek),
-            );
-          }).toList()),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: groupedTransactionValues.map((e) {
+              return Flexible(
+                fit: FlexFit.tight,
+                child: ChartBar(
+                    label: e['day'].toString(),
+                    spendingAmount: e['amount'] as double,
+                    spendingPctOfTotal: totalSpendingInWeek == 0.0
+                        ? 0.0
+                        : (e['amount'] as double) / totalSpendingInWeek),
+              );
+            }).toList()),
+      ),
     );
   }
 }
