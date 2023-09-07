@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
             ),
         //primarySwatch: Colors.purple,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.indigo,
         ).copyWith(
           secondary: Colors.amber,
         ),
