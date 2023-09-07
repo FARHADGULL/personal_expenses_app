@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:personal_expenses/widgets/chart.dart';
 import 'package:personal_expenses/widgets/new_transaction.dart';
 import 'package:personal_expenses/widgets/transaction_list.dart';
@@ -70,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
-      date: DateFormat.yMMMd().parse(DateTime.now().toString()),
+      date: DateTime.now(),
     );
 
     setState(() {
@@ -106,8 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
             TransactionList(_userTransactions),

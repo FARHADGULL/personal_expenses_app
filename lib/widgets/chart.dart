@@ -48,17 +48,18 @@ class Chart extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       color: Theme.of(context).colorScheme.secondary,
       child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((e) {
-        return Flexible(
-          fit: FlexFit.tight,
-          child: ChartBar(
-              label: e['day'].toString(),
-              spendingAmount: e['amount'] as double,
-              spendingPctOfTotal: totalSpendingInWeek == 0.0
-                  ? 0.0
-                  : (e['amount'] as double) / totalSpendingInWeek),
-        );
-      }).toList()),
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                  label: e['day'].toString(),
+                  spendingAmount: e['amount'] as double,
+                  spendingPctOfTotal: totalSpendingInWeek == 0.0
+                      ? 0.0
+                      : (e['amount'] as double) / totalSpendingInWeek),
+            );
+          }).toList()),
     );
   }
 }
