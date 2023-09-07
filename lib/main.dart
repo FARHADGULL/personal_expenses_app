@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
             ),
         //primarySwatch: Colors.purple,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.indigo,
+          primarySwatch: Colors.amber,
         ).copyWith(
-          secondary: Colors.amber,
+          secondary: Colors.cyan,
         ),
       ),
       home: MyHomePage(),
@@ -114,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () => _startAddNewTransaction(context),
       ),
     );

@@ -12,7 +12,7 @@ class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
-  void submitData() {
+  void _submitData() {
     if (titleController.text.isEmpty || amountController.text.isEmpty) {
       print('add valid entry');
     }
@@ -21,6 +21,15 @@ class _NewTransactionState extends State<NewTransaction> {
       double.parse(amountController.text),
     );
     Navigator.of(context).pop();
+  }
+
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    );
   }
 
   @override
@@ -35,7 +44,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 labelText: 'Title',
               ),
               controller: titleController,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: const InputDecoration(
@@ -43,7 +52,7 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             Container(
               height: 50,
@@ -54,9 +63,9 @@ class _NewTransactionState extends State<NewTransaction> {
                     style: TextStyle(
                         color: Theme.of(context).textTheme.labelLarge?.color),
                   ),
-                  const TextButton(
-                    onPressed: null,
-                    child: Text(
+                  TextButton(
+                    onPressed: _showDatePicker,
+                    child: const Text(
                       'Choose Date',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -67,9 +76,9 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
             ),
             ElevatedButton(
-                onPressed: submitData,
+                onPressed: _submitData,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                 ),
                 child: const Text(
                   'Add transaction',
