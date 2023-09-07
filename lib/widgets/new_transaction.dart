@@ -62,18 +62,18 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => _submitData(),
             ),
             Container(
-              height: 50,
+              height: 70,
               child: Row(
                 children: [
                   Text(
                     _selectDate == null
                         ? 'No date choosen!'
-                        : DateFormat.yMMMd().format(_selectDate!),
+                        : 'Purchase Date: ${DateFormat.yMMMd().format(_selectDate!)}',
                   ),
                   TextButton(
                     onPressed: _showDatePicker,
                     child: Text(
-                      'Choose Date',
+                      _selectDate == null ? 'Choose Date' : 'Change Date',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.secondary,
@@ -83,13 +83,15 @@ class _NewTransactionState extends State<NewTransaction> {
                 ],
               ),
             ),
-            ElevatedButton(
-              onPressed: _submitData,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-              ),
-              child: const Text(
-                'Add transaction',
+            Center(
+              child: ElevatedButton(
+                onPressed: _submitData,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                ),
+                child: const Text(
+                  'Add transaction',
+                ),
               ),
             )
           ],
