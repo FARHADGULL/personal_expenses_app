@@ -15,8 +15,10 @@ class _NewTransactionState extends State<NewTransaction> {
   DateTime? _selectDate;
 
   void _submitData() {
-    if (_titleController.text.isEmpty || _amountController.text.isEmpty) {
-      print('add valid entry');
+    if (_titleController.text.isEmpty ||
+        _amountController.text.isEmpty ||
+        _selectDate == null) {
+      return;
     }
     widget.addTx(_titleController.text, double.parse(_amountController.text),
         _selectDate);
@@ -65,10 +67,12 @@ class _NewTransactionState extends State<NewTransaction> {
               height: 70,
               child: Row(
                 children: [
-                  Text(
-                    _selectDate == null
-                        ? 'No date choosen!'
-                        : 'Purchase Date: ${DateFormat.yMMMd().format(_selectDate!)}',
+                  Expanded(
+                    child: Text(
+                      _selectDate == null
+                          ? 'No date choosen!'
+                          : 'Purchase Date: ${DateFormat.yMMMd().format(_selectDate!)}',
+                    ),
                   ),
                   TextButton(
                     onPressed: _showDatePicker,

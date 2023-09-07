@@ -50,8 +50,14 @@ class TransactionList extends StatelessWidget {
                     title: Text(
                       UserTransactions[index].title,
                     ),
-                    subtitle: Text(DateFormat.yMMMd()
-                        .format(UserTransactions[index].date)),
+                    subtitle: Text(
+                      DateFormat.yMMMd().format(UserTransactions[index].date),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.delete),
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   ),
                 );
 
