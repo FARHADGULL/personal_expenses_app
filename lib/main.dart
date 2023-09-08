@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
               titleMedium: const TextStyle(
                 fontFamily: 'OpenSans',
                 fontSize: 18,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
