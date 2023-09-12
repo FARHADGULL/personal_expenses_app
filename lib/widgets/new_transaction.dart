@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -56,6 +59,11 @@ class _NewTransactionState extends State<NewTransaction> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              // CupertinoTextField(
+              //   placeholder: 'Title',
+              //   controller: _titleController,
+              //   onSubmitted: (_) => _submitData(),
+              // ),
               TextField(
                 decoration: const InputDecoration(
                   labelText: 'Title',
@@ -82,16 +90,31 @@ class _NewTransactionState extends State<NewTransaction> {
                             : 'Purchase Date: ${DateFormat.yMMMd().format(_selectDate!)}',
                       ),
                     ),
-                    TextButton(
-                      onPressed: _showDatePicker,
-                      child: Text(
-                        _selectDate == null ? 'Choose Date' : 'Change Date',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                      ),
-                    ),
+                    Platform.isIOS
+                        ? CupertinoButton(
+                            onPressed: _showDatePicker,
+                            child: Text(
+                              _selectDate == null
+                                  ? 'Choose Date'
+                                  : 'Change Date',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                            ),
+                          )
+                        : TextButton(
+                            onPressed: _showDatePicker,
+                            child: Text(
+                              _selectDate == null
+                                  ? 'Choose Date'
+                                  : 'Change Date',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                            ),
+                          ),
                   ],
                 ),
               ),
