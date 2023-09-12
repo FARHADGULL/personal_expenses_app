@@ -143,58 +143,60 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             ],
           );
-    final body = SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          if (isLandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Show Chart'),
-                Switch.adaptive(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                )
-              ],
-            ),
-          if (isLandscape)
-            _showChart
-                ? Container(
-                    height: (mediaQuery.size.height -
-                            appbar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.6,
-                    child: Chart(_recentTransactions),
+    final body = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Show Chart'),
+                  Switch.adaptive(
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
                   )
-                : Container(
-                    height: (mediaQuery.size.height -
-                            appbar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.7,
-                    child:
-                        TransactionList(_userTransactions, _deleteTransaction),
-                  ),
-          if (!isLandscape)
-            Container(
-              height: (mediaQuery.size.height -
-                      appbar.preferredSize.height -
-                      mediaQuery.padding.top) *
-                  0.3,
-              child: Chart(_recentTransactions),
-            ),
-          if (!isLandscape)
-            Container(
-              height: (mediaQuery.size.height -
-                      appbar.preferredSize.height -
-                      mediaQuery.padding.top) *
-                  0.7,
-              child: TransactionList(_userTransactions, _deleteTransaction),
-            ),
-        ],
+                ],
+              ),
+            if (isLandscape)
+              _showChart
+                  ? Container(
+                      height: (mediaQuery.size.height -
+                              appbar.preferredSize.height -
+                              mediaQuery.padding.top) *
+                          0.6,
+                      child: Chart(_recentTransactions),
+                    )
+                  : Container(
+                      height: (mediaQuery.size.height -
+                              appbar.preferredSize.height -
+                              mediaQuery.padding.top) *
+                          0.7,
+                      child: TransactionList(
+                          _userTransactions, _deleteTransaction),
+                    ),
+            if (!isLandscape)
+              Container(
+                height: (mediaQuery.size.height -
+                        appbar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.3,
+                child: Chart(_recentTransactions),
+              ),
+            if (!isLandscape)
+              Container(
+                height: (mediaQuery.size.height -
+                        appbar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.7,
+                child: TransactionList(_userTransactions, _deleteTransaction),
+              ),
+          ],
+        ),
       ),
     );
     return Platform.isIOS
