@@ -59,5 +59,47 @@ class TransactionItem extends StatelessWidget {
               ),
       ),
     );
+
+    //   return Card(
+    //     child: Row(
+    //       children: [
+    //         Container(
+    //           margin: const EdgeInsets.symmetric(
+    //             vertical: 10,
+    //             horizontal: 15,
+    //           ),
+    //           decoration: BoxDecoration(
+    //             border: Border.all(
+    //               color: Theme.of(context).primaryColor,
+    //               width: 2,
+    //             ),
+    //           ),
+    //           padding: const EdgeInsets.all(10),
+    //           child: Text(
+    //             '\$${UserTransactions[index].amount.toStringAsFixed(2)}',
+    //             style: const TextStyle(
+    //               fontWeight: FontWeight.bold,
+    //               fontSize: 20,
+    //               color: Colors.purple,
+    //             ),
+    //           ),
+    //         ),
+    //         Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: [
+    //             Text(UserTransactions[index].title,
+    //                 style: Theme.of(context).textTheme.titleMedium),
+    //             Text(
+    //               DateFormat.yMMMd()
+    //                   .format(UserTransactions[index].date),
+    //               style: const TextStyle(
+    //                 color: Colors.grey,
+    //               ),
+    //             ),
+    //           ],
+    //         )
+    //       ],
+    //     ),
+    //   );
   }
 }
