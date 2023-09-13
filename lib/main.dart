@@ -138,7 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () => _startAddNewTransaction(context),
                 icon: const Icon(
                   Icons.add,
-                  //color: Colors.yellow,
                 ),
               )
             ],
