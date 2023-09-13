@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:personal_expenses/widgets/transaction_item.dart';
 
 import '../models/transaction.dart';
 
@@ -37,51 +37,8 @@ class TransactionList extends StatelessWidget {
         : ListView.builder(
             itemCount: UserTransactions.length,
             itemBuilder: (context, index) {
-              return Card(
-                elevation: 5,
-                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    //add color to the avatar
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    radius: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: FittedBox(
-                        child: Text('\$${UserTransactions[index].amount}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                            )),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    UserTransactions[index].title,
-                  ),
-                  subtitle: Text(
-                    DateFormat.yMMMd().format(UserTransactions[index].date),
-                  ),
-                  trailing: MediaQuery.of(context).size.width > 360
-                      ? TextButton.icon(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () => deleteTx(UserTransactions[index].id),
-                          label: Text(
-                            'Delete',
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.error),
-                          ),
-                          style: ButtonStyle(
-                            iconColor: MaterialStateProperty.all(
-                                Theme.of(context).colorScheme.error),
-                          ),
-                        )
-                      : IconButton(
-                          onPressed: () => deleteTx(UserTransactions[index].id),
-                          icon: const Icon(Icons.delete),
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                ),
-              );
+              return TransactionItem(
+                  UserTransaction: UserTransactions[index], deleteTx: deleteTx);
 
               //   return Card(
               //     child: Row(
