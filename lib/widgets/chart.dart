@@ -52,7 +52,7 @@ class Chart extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       color: Theme.of(context).colorScheme.secondary,
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: groupedTransactionValues.map((e) {
