@@ -110,6 +110,41 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  List<Widget> _buildLandscapeContent(
+      MediaQueryData mediaQuery, AppBar appbar) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Show Chart', style: Theme.of(context).textTheme.titleMedium),
+          Switch.adaptive(
+            value: _showChart,
+            onChanged: (val) {
+              setState(() {
+                _showChart = val;
+              });
+            },
+          )
+        ],
+      ),
+      _showChart
+          ? Container(
+              height: (mediaQuery.size.height -
+                      appbar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.6,
+              child: Chart(_recentTransactions),
+            )
+          : Container(
+              height: (mediaQuery.size.height -
+                      appbar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.7,
+              child: TransactionList(_userTransactions, _deleteTransaction),
+            ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -147,46 +182,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Show Chart',
-                      style: Theme.of(context).textTheme.titleMedium),
-                  Switch.adaptive(
-                    value: _showChart,
-                    onChanged: (val) {
-                      setState(() {
-                        _showChart = val;
-                      });
-                    },
-                  )
-                ],
-              ),
+              ..._buildLandscapeContent(mediaQuery, appbar as AppBar),
             if (isLandscape)
-              _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height -
-                              appbar.preferredSize.height -
-                              mediaQuery.padding.top) *
-                          0.6,
-                      child: Chart(_recentTransactions),
-                    )
-                  : Container(
-                      height: (mediaQuery.size.height -
-                              appbar.preferredSize.height -
-                              mediaQuery.padding.top) *
-                          0.7,
-                      child: TransactionList(
-                          _userTransactions, _deleteTransaction),
-                    ),
-            if (!isLandscape)
-              Container(
-                height: (mediaQuery.size.height -
-                        appbar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(_recentTransactions),
-              ),
+              if (!isLandscape)
+                Container(
+                  height: (mediaQuery.size.height -
+                          appbar.preferredSize.height -
+                          mediaQuery.padding.top) *
+                      0.3,
+                  child: Chart(_recentTransactions),
+                ),
             if (!isLandscape)
               Container(
                 height: (mediaQuery.size.height -
