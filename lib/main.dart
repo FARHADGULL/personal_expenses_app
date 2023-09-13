@@ -145,6 +145,25 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
+  List<Widget> _buildPortraitContent(MediaQueryData mediaQuery, appbar) {
+    return [
+      Container(
+        height: (mediaQuery.size.height -
+                appbar.preferredSize.height -
+                mediaQuery.padding.top) *
+            0.3,
+        child: Chart(_recentTransactions),
+      ),
+      Container(
+        height: (mediaQuery.size.height -
+                appbar.preferredSize.height -
+                mediaQuery.padding.top) *
+            0.7,
+        child: TransactionList(_userTransactions, _deleteTransaction),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -183,23 +202,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             if (isLandscape)
               ..._buildLandscapeContent(mediaQuery, appbar as AppBar),
-            if (isLandscape)
-              if (!isLandscape)
-                Container(
-                  height: (mediaQuery.size.height -
-                          appbar.preferredSize.height -
-                          mediaQuery.padding.top) *
-                      0.3,
-                  child: Chart(_recentTransactions),
-                ),
             if (!isLandscape)
-              Container(
-                height: (mediaQuery.size.height -
-                        appbar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.7,
-                child: TransactionList(_userTransactions, _deleteTransaction),
-              ),
+              ..._buildPortraitContent(mediaQuery, appbar as AppBar),
           ],
         ),
       ),
