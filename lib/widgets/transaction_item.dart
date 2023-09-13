@@ -6,11 +6,11 @@ import '../models/transaction.dart';
 class TransactionItem extends StatelessWidget {
   const TransactionItem({
     super.key,
-    required this.UserTransaction,
+    required this.userTransaction,
     required this.deleteTx,
   });
 
-  final Transaction UserTransaction;
+  final Transaction userTransaction;
   final Function deleteTx;
 
   @override
@@ -26,7 +26,7 @@ class TransactionItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(6),
             child: FittedBox(
-              child: Text('\$${UserTransaction.amount}',
+              child: Text('\$${userTransaction.amount}',
                   style: const TextStyle(
                     color: Colors.black,
                   )),
@@ -34,15 +34,15 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          UserTransaction.title,
+          userTransaction.title,
         ),
         subtitle: Text(
-          DateFormat.yMMMd().format(UserTransaction.date),
+          DateFormat.yMMMd().format(userTransaction.date),
         ),
         trailing: MediaQuery.of(context).size.width > 360
             ? TextButton.icon(
                 icon: const Icon(Icons.delete),
-                onPressed: () => deleteTx(UserTransaction.id),
+                onPressed: () => deleteTx(userTransaction.id),
                 label: Text(
                   'Delete',
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
@@ -53,7 +53,7 @@ class TransactionItem extends StatelessWidget {
                 ),
               )
             : IconButton(
-                onPressed: () => deleteTx(UserTransaction.id),
+                onPressed: () => deleteTx(userTransaction.id),
                 icon: const Icon(Icons.delete),
                 color: Theme.of(context).colorScheme.error,
               ),

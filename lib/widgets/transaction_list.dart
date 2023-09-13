@@ -38,7 +38,7 @@ class TransactionList extends StatelessWidget {
             itemCount: userTransactions.length,
             itemBuilder: (context, index) {
               return TransactionItem(
-                  UserTransaction: userTransactions[index], deleteTx: deleteTx);
+                  userTransaction: userTransactions[index], deleteTx: deleteTx);
             },
           );
   }
