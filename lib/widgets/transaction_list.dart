@@ -4,14 +4,14 @@ import 'package:personal_expenses/widgets/transaction_item.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> UserTransactions;
+  final List<Transaction> userTransactions;
   final Function deleteTx;
-  const TransactionList(this.UserTransactions, this.deleteTx, {Key? key})
+  const TransactionList(this.userTransactions, this.deleteTx, {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return UserTransactions.isEmpty
+    return userTransactions.isEmpty
         ? LayoutBuilder(
             builder: (context, constraints) {
               return Column(
@@ -35,10 +35,10 @@ class TransactionList extends StatelessWidget {
             },
           )
         : ListView.builder(
-            itemCount: UserTransactions.length,
+            itemCount: userTransactions.length,
             itemBuilder: (context, index) {
               return TransactionItem(
-                  UserTransaction: UserTransactions[index], deleteTx: deleteTx);
+                  UserTransaction: userTransactions[index], deleteTx: deleteTx);
             },
           );
   }
