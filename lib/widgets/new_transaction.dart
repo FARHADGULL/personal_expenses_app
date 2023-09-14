@@ -35,6 +35,12 @@ class _NewTransactionState extends State<NewTransaction> {
     super.didChangeDependencies();
   }
 
+  @override
+  void dispose() {
+    print('dispose NewTransaction Widget');
+    super.dispose();
+  }
+
   void _submitData() {
     if (_titleController.text.isEmpty ||
         _amountController.text.isEmpty ||
