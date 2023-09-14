@@ -24,6 +24,12 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   @override
+  void initState() {
+    print('initState NewTransaction Widget');
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     print('didChangeDependencies NewTransaction Widget');
     super.didChangeDependencies();
