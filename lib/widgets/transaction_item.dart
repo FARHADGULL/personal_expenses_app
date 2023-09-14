@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
 
-class TransactionItem extends StatelessWidget {
+class TransactionItem extends StatefulWidget {
   const TransactionItem({
     super.key,
     required this.userTransaction,
@@ -14,19 +16,37 @@ class TransactionItem extends StatelessWidget {
   final Function deleteTx;
 
   @override
+  State<TransactionItem> createState() => _TransactionItemState();
+}
+
+class _TransactionItemState extends State<TransactionItem> {
+  Color? _bgColor;
+  @override
+  void initState() {
+    const availableColors = [
+      Colors.red,
+      Colors.blue,
+      Colors.purple,
+      Colors.amber,
+    ];
+    _bgColor = availableColors[Random().nextInt(4)];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       child: ListTile(
         leading: CircleAvatar(
-          //add color to the avatar
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: _bgColor,
+          //backgroundColor: Theme.of(context).colorScheme.primary,
           radius: 30,
           child: Padding(
             padding: const EdgeInsets.all(6),
             child: FittedBox(
-              child: Text('\$${userTransaction.amount}',
+              child: Text('\$${widget.userTransaction.amount}',
                   style: const TextStyle(
                     color: Colors.black,
                   )),
@@ -34,15 +54,15 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          userTransaction.title,
+          widget.userTransaction.title,
         ),
         subtitle: Text(
-          DateFormat.yMMMd().format(userTransaction.date),
+          DateFormat.yMMMd().format(widget.userTransaction.date),
         ),
         trailing: MediaQuery.of(context).size.width > 360
             ? TextButton.icon(
                 icon: const Icon(Icons.delete),
-                onPressed: () => deleteTx(userTransaction.id),
+                onPressed: () => widget.deleteTx(widget.userTransaction.id),
                 label: Text(
                   'Delete',
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
@@ -53,7 +73,7 @@ class TransactionItem extends StatelessWidget {
                 ),
               )
             : IconButton(
-                onPressed: () => deleteTx(userTransaction.id),
+                onPressed: () => widget.deleteTx(widget.userTransaction.id),
                 icon: const Icon(Icons.delete),
                 color: Theme.of(context).colorScheme.error,
               ),
