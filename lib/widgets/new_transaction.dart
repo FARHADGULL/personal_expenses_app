@@ -19,6 +19,10 @@ class _NewTransactionState extends State<NewTransaction> {
   final _amountController = TextEditingController();
   DateTime? _selectDate;
 
+  _NewTransactionState() {
+    print('Constructor _NewTransactionState');
+  }
+
   @override
   void didChangeDependencies() {
     print('didChangeDependencies NewTransaction Widget');
